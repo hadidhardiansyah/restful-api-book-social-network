@@ -1,7 +1,7 @@
-package com.hadid.book_network.role;
+package com.hadid.book_network.entity.role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hadid.book_network.user.User;
+import com.hadid.book_network.entity.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

@@ -1,6 +1,6 @@
-package com.hadid.book_network.user;
+package com.hadid.book_network.entity.user;
 
-import com.hadid.book_network.role.Role;
+import com.hadid.book_network.entity.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
