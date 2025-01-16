@@ -1,6 +1,8 @@
 package com.hadid.book_network.controller;
 
+import com.hadid.book_network.dto.request.AuthenticationRequest;
 import com.hadid.book_network.dto.request.RegistrationRequest;
+import com.hadid.book_network.dto.response.AuthenticationResponse;
 import com.hadid.book_network.service.implementation.AuthenticationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
@@ -26,5 +28,13 @@ public class AuthenticationController {
         authenticationService.register(request);
         return ResponseEntity.accepted().build();
     }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse> authenticate(
+            @RequestBody @Valid AuthenticationRequest request
+    ) {
+        return ResponseEntity.ok(authenticationService.authenticate(request));
+    }
+
 
 }
