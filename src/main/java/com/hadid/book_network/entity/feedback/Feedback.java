@@ -1,5 +1,6 @@
 package com.hadid.book_network.entity.feedback;
 
+import com.hadid.book_network.entity.book.Book;
 import com.hadid.book_network.entity.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,5 +20,9 @@ public class Feedback extends BaseEntity {
     private Double note;
 
     private String comment;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
 }
