@@ -1,10 +1,12 @@
 package com.hadid.book_network.service.implementation;
 
 import com.hadid.book_network.dto.request.BookRequest;
+import com.hadid.book_network.dto.response.BookResponse;
 import com.hadid.book_network.entity.book.Book;
 import com.hadid.book_network.entity.user.User;
 import com.hadid.book_network.mapper.BookMapper;
 import com.hadid.book_network.repository.IBookRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -26,4 +28,9 @@ public class BookService {
         return bookRepository.save(book).getId();
     }
 
+    public BookResponse findById(Long bookId) {
+        return bookRepository.findById(bookId)
+                .map(bookMapper::toBookResponse)
+                .orElseThrow(() -> new EntityNotFoundException("No book found with ID: " + bookId));
+    }
 }

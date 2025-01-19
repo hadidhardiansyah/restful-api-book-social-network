@@ -1,6 +1,7 @@
 package com.hadid.book_network.mapper;
 
 import com.hadid.book_network.dto.request.BookRequest;
+import com.hadid.book_network.dto.response.BookResponse;
 import com.hadid.book_network.entity.book.Book;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +19,18 @@ public class BookMapper {
                 .build();
     }
 
+    public BookResponse toBookResponse(Book book) {
+        return BookResponse.builder()
+                .id(book.getId())
+                .title(book.getTitle())
+                .authorName(book.getAuthorName())
+                .isbn(book.getIsbn())
+                .synopsis(book.getSynopsis())
+                .rate(book.getRate())
+                .archived(book.isArchived())
+                .shareable(book.isShareable())
+                .owner(book.getOwner().fullName())
+//                .cover()
+                .build();
+    }
 }
