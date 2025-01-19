@@ -1,4 +1,4 @@
-package com.hadid.book_network.entity.book;
+package com.hadid.book_network.entity.feedback;
 
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedBy;
@@ -11,25 +11,15 @@ import java.time.LocalDateTime;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Book {
+public class Feedback {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private String title;
+    private Double note;
 
-    private String authorName;
-
-    private String isbn;
-
-    private String synopsis;
-
-    private String bookCover;
-
-    private boolean archived;
-
-    private boolean shareable;
+    private String comment;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
