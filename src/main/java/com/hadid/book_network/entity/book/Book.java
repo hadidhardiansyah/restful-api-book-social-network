@@ -1,21 +1,20 @@
 package com.hadid.book_network.entity.book;
 
+import com.hadid.book_network.entity.common.BaseEntity;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
-
+@Getter
+@Setter
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-public class Book {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Book extends BaseEntity {
 
     private String title;
 
@@ -30,21 +29,5 @@ public class Book {
     private boolean archived;
 
     private boolean shareable;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime creationDate;
-
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime lastModifiedDate;
-
-    @CreatedBy
-    @Column(nullable = false, updatable = false)
-    private Long createdBy;
-
-    @LastModifiedBy
-    @Column(insertable = false)
-    private Long lastModifiedBy;
 
 }
