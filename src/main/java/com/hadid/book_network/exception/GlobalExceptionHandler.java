@@ -68,6 +68,17 @@ public class GlobalExceptionHandler {
                 );
     }
 
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<ExceptionResponse> handlerException(OperationNotPermittedException exception) {
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(
+                        ExceptionResponse.builder()
+                                .error(exception.getMessage())
+                                .build()
+                );
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ExceptionResponse> handlerException(MethodArgumentNotValidException exception) {
         Set<String> errors = new HashSet<>();

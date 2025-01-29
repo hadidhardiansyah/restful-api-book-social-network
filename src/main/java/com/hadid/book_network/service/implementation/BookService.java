@@ -7,6 +7,7 @@ import com.hadid.book_network.entity.book.Book;
 import com.hadid.book_network.entity.common.response.PageResponse;
 import com.hadid.book_network.entity.history.BookTransactionHistory;
 import com.hadid.book_network.entity.user.User;
+import com.hadid.book_network.exception.OperationNotPermittedException;
 import com.hadid.book_network.mapper.BookMapper;
 import com.hadid.book_network.repository.IBookRepository;
 import com.hadid.book_network.repository.IBookTransactionRepository;
@@ -20,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.hadid.book_network.specification.BookSpecification.withOwner;
 
@@ -122,5 +124,20 @@ public class BookService {
                 allBorrowedBooks.isFirst(),
                 allBorrowedBooks.isLast()
         );
+    }
+
+    public Long updateShareableStatus(Long bookId, Authentication connectedUser) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new EntityNotFoundException("No book found with ID: " + bookId));
+        User user = ((User) connectedUser.getPrincipal());
+
+        if (!Objects.equals(book.getOwner().getId(), user.getId())) {
+            throw new OperationNotPermittedException("You cannot update books shareable status");
+        }
+
+        book.setShareable(!book.isShareable());
+        bookRepository.save(book);
+
+        return bookId;
     }
 }
