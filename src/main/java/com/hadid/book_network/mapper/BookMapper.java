@@ -5,6 +5,7 @@ import com.hadid.book_network.dto.response.BookResponse;
 import com.hadid.book_network.dto.response.BorrowedBookResponse;
 import com.hadid.book_network.entity.book.Book;
 import com.hadid.book_network.entity.history.BookTransactionHistory;
+import com.hadid.book_network.utility.FileUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,7 +33,7 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner().fullName())
-//                .cover()
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 
