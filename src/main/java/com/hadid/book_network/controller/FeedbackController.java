@@ -1,6 +1,7 @@
 package com.hadid.book_network.controller;
 
 import com.hadid.book_network.dto.request.FeedbackRequest;
+import com.hadid.book_network.dto.response.FeedbackResponse;
 import com.hadid.book_network.entity.common.response.PageResponse;
 import com.hadid.book_network.service.implementation.FeedbackService;
 import io.swagger.v3.oas.annotations.tags.Tag;
