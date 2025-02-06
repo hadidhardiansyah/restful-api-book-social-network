@@ -134,7 +134,7 @@ public class AuthenticationService {
             throw new RuntimeException("Activation token has expired. A new token has been sent to the same email address");
         }
 
-        var user = userRepository.findById(savedToken.getId())
+        var user = userRepository.findById(savedToken.getUser().getId())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         user.setEnabled(true);
