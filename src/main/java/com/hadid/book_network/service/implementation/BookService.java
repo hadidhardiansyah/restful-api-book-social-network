@@ -12,6 +12,7 @@ import com.hadid.book_network.mapper.BookMapper;
 import com.hadid.book_network.repository.IBookRepository;
 import com.hadid.book_network.repository.IBookTransactionRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +29,7 @@ import static com.hadid.book_network.specification.BookSpecification.withOwner;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BookService {
 
     private final BookMapper bookMapper;
