@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/book_social_network
+    url: jdbc:postgresql://localhost:5433/book_social_network
     username: username
     password: password
     driver-class-name: org.postgresql.Driver
@@ -41,4 +41,4 @@ application:
     upload:
       photos-output-path: ./uploads
 server:
-  port: 8080
+  port: 8081
